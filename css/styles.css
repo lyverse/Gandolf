@@ -1,0 +1,29 @@
+/* Reset default spacing */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* Ensure full viewport usage */
+html, body {
+  height: 100%;
+  width: 100%;
+  overflow: hidden;
+}
+
+/* Container fills screen */
+.gif-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+/* Make GIF cover entire screen */
+.gif-container img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover; /* ensures it fills without distortion */
+}
