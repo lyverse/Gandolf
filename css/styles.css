@@ -1,19 +1,20 @@
-/* Reset default spacing */
+/* Reset */
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
 
-/* Ensure full viewport usage */
+/* Fullscreen base */
 html, body {
   height: 100%;
   width: 100%;
   overflow: hidden;
+  background: black; /* prevents white flash */
 }
 
-/* Container fills screen */
-.gif-container {
+/* Container */
+.media-container {
   position: fixed;
   top: 0;
   left: 0;
@@ -21,9 +22,43 @@ html, body {
   height: 100%;
 }
 
-/* Make GIF cover entire screen */
-.gif-container img {
+/* Shared media styles */
+.bg-media,
+.fallback-gif {
   width: 100%;
   height: 100%;
-  object-fit: cover; /* ensures it fills without distortion */
+  object-fit: cover;
+}
+
+/* Hide GIF if video loads */
+.bg-media {
+  display: block;
+}
+
+.fallback-gif {
+  display: none;
+}
+
+/* If video fails (very rare), show GIF */
+video:not([src]) + .fallback-gif {
+  display: block;
+}
+
+/* Mobile optimization */
+@media (max-width: 768px) {
+  .bg-media {
+    /* Reduce CPU/GPU strain slightly */
+    transform: scale(1.02);
+  }
+}
+
+/* Respect user "reduce motion" setting */
+@media (prefers-reduced-motion: reduce) {
+  .bg-media {
+    display: none;
+  }
+
+  .fallback-gif {
+    display: block;
+  }
 }
