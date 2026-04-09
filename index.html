@@ -2,22 +2,38 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Fullscreen Visual</title>
   <link rel="stylesheet" href="css/styles.css" />
 </head>
 <body>
   <div class="media-container">
 
-    <!-- Optimized video (used on most devices) -->
-    <video autoplay muted loop playsinline class="bg-media">
+    <!-- Blurred placeholder -->
+    <img 
+      src="assets/gandalf-placeholder.jpg" 
+      alt="Loading preview"
+      class="placeholder"
+    />
+
+    <!-- Video -->
+    <video autoplay muted loop playsinline class="bg-media" id="bgVideo">
       <source src="assets/gandalf.webm" type="video/webm" />
       <source src="assets/gandalf.mp4" type="video/mp4" />
     </video>
 
-    <!-- GIF fallback (if video fails) -->
+    <!-- GIF fallback -->
     <img src="assets/gandalf.gif" alt="Fallback GIF" class="fallback-gif" />
 
   </div>
+
+  <script>
+    const video = document.getElementById("bgVideo");
+    const container = document.querySelector(".media-container");
+
+    video.addEventListener("canplay", () => {
+      container.classList.add("loaded");
+    });
+  </script>
 </body>
 </html>
